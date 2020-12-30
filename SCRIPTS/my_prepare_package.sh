@@ -37,8 +37,8 @@ rm -fr package/lean/luci-app-openclash
 git clone -b master --single-branch https://github.com/vernesong/OpenClash package/lean/luci-app-openclash
 ## 修改 DashBoard 默认地址和密码
 pushd package/lean/luci-app-openclash/luci-app-openclash/root/usr/share/openclash/dashboard/static/js
-sed -i 's/n=C(\"externalControllerAddr\",\"127.0.0.1\"),a=C(\"externalControllerPort\",\"9090\"),r=C(\"secret\",\"\")/n=C(\"externalControllerAddr\",\"nanopi-r4s\"),a=C(\"externalControllerPort\",\"9090\"),r=C(\"secret\",\"123456\")/' *js
-sed -i 's/hostname:\"127.0.0.1\",port:\"9090\",secret:\"\"/hostname:\"nanopi-r4s\",port:\"9090\",secret:\"123456\"/' *js
+sed -i 's/n=C(\"externalControllerAddr\",\"127.0.0.1\"),a=C(\"externalControllerPort\",\"9090\"),r=C(\"secret\",\"\")/n=C(\"externalControllerAddr\",\"nanopi-r4s.lan\"),a=C(\"externalControllerPort\",\"9090\"),r=C(\"secret\",\"123456\")/' *js
+sed -i 's/hostname:\"127.0.0.1\",port:\"9090\",secret:\"\"/hostname:\"nanopi-r4s.lan\",port:\"9090\",secret:\"123456\"/' *js
 popd
 # 预置 dev 内核
 mkdir -p package/base-files/files/etc/openclash/core
