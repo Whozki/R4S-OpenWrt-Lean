@@ -58,7 +58,7 @@ sed -i '/<a href=\"https:\/\/github.com\/jerrykuku\/luci-theme-argon\">/d'  foot
 sed -i '/<%= ver.distversion %>/d' footer.htm
 popd
 ## 设置首页背景
-mkdir package/base-files/files/www/luci-static/argon/background
+mkdir -p package/base-files/files/www/luci-static/argon/background
 cp ${MY_PATH}/../PATCH/background.jpg package/base-files/files/www/luci-static/argon/background/
 
 # 替换 luci 的 bootstrap 主题依赖
