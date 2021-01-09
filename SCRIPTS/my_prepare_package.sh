@@ -10,17 +10,17 @@ svn co https://github.com/fw876/helloworld/trunk/tcping tcping
 svn co https://github.com/fw876/helloworld/trunk/naiveproxy naiveproxy
 popd
 pushd package/lean/luci-app-ssr-plus
-# 调整常用端口
+## 调整常用端口
 sed -i 's/143/143,25,5222/' root/etc/init.d/shadowsocksr
-# 替换首页标题及其翻译
+## 替换首页标题及其翻译
 sed -i 's/ShadowSocksR Plus+ Settings/Basic Settings/' po/zh-cn/ssr-plus.po
 sed -i 's/ShadowSocksR Plus+ 设置/基本设置/' po/zh-cn/ssr-plus.po
-# 删除首页不必要的内容
+## 删除首页不必要的内容
 sed -i '/<h3>Support SS/d' po/zh-cn/ssr-plus.po
 sed -i '/<h3>支持 SS/d' po/zh-cn/ssr-plus.po
 sed -i 's/Map(shadowsocksr, translate("ShadowSocksR Plus+ Settings"),/Map(shadowsocksr, translate("Basic Settings"))/' luasrc/model/cbi/shadowsocksr/client.lua
 sed -i '/translate("<h3>Support SS/d' luasrc/model/cbi/shadowsocksr/client.lua
-# 全局替换 ShadowSocksR Plus+ 为 SSRPlus
+## 全局替换 ShadowSocksR Plus+ 为 SSRPlus
 files="$(find 2>"/dev/null")"
 for f in ${files}
 do
@@ -40,7 +40,7 @@ pushd package/lean/luci-app-openclash/luci-app-openclash/root/usr/share/openclas
 sed -i 's/n=C(\"externalControllerAddr\",\"127.0.0.1\"),a=C(\"externalControllerPort\",\"9090\"),r=C(\"secret\",\"\")/n=C(\"externalControllerAddr\",\"nanopi-r4s.lan\"),a=C(\"externalControllerPort\",\"9090\"),r=C(\"secret\",\"123456\")/' *js
 sed -i 's/hostname:\"127.0.0.1\",port:\"9090\",secret:\"\"/hostname:\"nanopi-r4s.lan\",port:\"9090\",secret:\"123456\"/' *js
 popd
-# 预置 dev 内核
+## 预置 dev 内核
 mkdir -p package/base-files/files/etc/openclash/core
 wget https://raw.githubusercontent.com/vernesong/OpenClash/master/core-lateset/dev/clash-linux-armv8.tar.gz
 tar -zxvf clash-linux-armv8.tar.gz
@@ -57,6 +57,9 @@ sed -i '/(<%= ver.luciversion %>)<\/a>/d' footer.htm
 sed -i '/<a href=\"https:\/\/github.com\/jerrykuku\/luci-theme-argon\">/d'  footer.htm
 sed -i '/<%= ver.distversion %>/d' footer.htm
 popd
+## 设置首页背景
+mkdir package/base-files/files/www/luci-static/argon/background
+cp ${MY_PATH}/../PATCH/background.jpg package/base-files/files/www/luci-static/argon/background/
 
 # 替换 luci 的 bootstrap 主题依赖
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/' ./feeds/luci/collections/luci/Makefile
