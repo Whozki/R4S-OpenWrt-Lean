@@ -1,6 +1,7 @@
 name: R4S-1G-OpenWrt-Lean
 
 on:
+  workflow_dispatch:
   push:
     branches: 
       - master
@@ -9,13 +10,10 @@ on:
       - 'PATCH/**'
       - 'SCRIPTS/**'
       - 'SEED/**'
-  watch:
-    types: [started]
 
 jobs:
   build:
     runs-on: ubuntu-18.04
-    if: github.event.repository.owner.id == github.event.sender.id
     
     steps:
     - name: Clone Repository
